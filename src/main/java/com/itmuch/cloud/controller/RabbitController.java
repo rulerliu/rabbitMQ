@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.itmuch.cloud.dierct.DirectSender;
 import com.itmuch.cloud.entity.User;
 import com.itmuch.cloud.fanout.FanoutSender;
 import com.itmuch.cloud.hello.HelloSender;
@@ -12,6 +13,14 @@ import com.itmuch.cloud.many.Sender2;
 import com.itmuch.cloud.object.ObjectSender;
 import com.itmuch.cloud.topic.TopicSender;
 
+/**
+ * 配置消息交换机
+ * 针对消费者配置
+ * FanoutExchange: 将消息分发到所有的绑定队列，无routingkey的概念
+ * HeadersExchange ：通过添加属性key-value匹配
+ * DirectExchange:按照routingkey分发到指定队列
+ * TopicExchange:多关键字匹配
+ */
 @RestController
 public class RabbitController {
 	
@@ -29,6 +38,9 @@ public class RabbitController {
 
 	@Autowired
 	private FanoutSender fanoutSender;
+	
+	@Autowired
+	private DirectSender directSender;
 	
 	@Autowired
 	private TopicSender topicSender;
@@ -74,7 +86,7 @@ public class RabbitController {
 	}
 	
 	/**
-	 * 只要绑定了交换机的队列都能收到
+	 * 只要绑定了交换机的队列都能收到（发布订阅模式）
 	 * @return
 	 */
 	@RequestMapping("/fanout")
@@ -84,7 +96,17 @@ public class RabbitController {
 	}
 	
 	/**
-	 *    #匹配0个字符或者一个以上，，，*匹配一个字符
+	 * 只要绑定了交换机的队列都能收到（路由模式）
+	 * @return
+	 */
+	@RequestMapping("/direct")
+	public String direct(String routingKey) {
+		directSender.send(routingKey);
+		return "success";
+	}
+	
+	/**
+	 *    #匹配0个字符或者一个以上，，，*匹配一个字符（主题模式）
 	 * @return
 	 */
 	@RequestMapping("/topic")

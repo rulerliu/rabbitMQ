@@ -16,22 +16,25 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class TopicRabbitConfig {
 
-	final static String message = "topic.message";
-    final static String messages = "topic.messages";
+	final static String TOPIC_MESSAGE_QUQUE = "topic.message";
+    final static String TOPIC_MESSAGES_QUQUE = "topic.messages";
+    
+    // 交换机名称
+ 	private static final String EXCHANGE_NAME = "topicExchange";
  
     @Bean
     public Queue queueMessage() {
-        return new Queue(TopicRabbitConfig.message);
+        return new Queue(TOPIC_MESSAGE_QUQUE);
     }
  
     @Bean
     public Queue queueMessages() {
-        return new Queue(TopicRabbitConfig.messages);
+        return new Queue(TOPIC_MESSAGES_QUQUE);
     }
  
     @Bean
     public TopicExchange exchange() {
-        return new TopicExchange("topicExchange");
+        return new TopicExchange(EXCHANGE_NAME);
     }
  
     @Bean

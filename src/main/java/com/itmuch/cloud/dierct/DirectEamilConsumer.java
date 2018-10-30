@@ -1,12 +1,12 @@
-package com.itmuch.cloud.fanout;
+package com.itmuch.cloud.dierct;
 
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 @Component
-@RabbitListener(queues = "fanout_eamil_queue")
-public class FanoutEamilConsumer {
+@RabbitListener(queues = "direct_eamil_queue")
+public class DirectEamilConsumer {
 	
 	@RabbitHandler
 	public void process(String msg) throws Exception {

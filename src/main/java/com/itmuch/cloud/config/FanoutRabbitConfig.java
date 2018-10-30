@@ -17,13 +17,13 @@ import org.springframework.context.annotation.Configuration;
 public class FanoutRabbitConfig {
 
 	// 邮件队列
-	private static final String FANOUT_EMAIL_QUEUE = "fanout_eamil_queue3";
+	private static final String FANOUT_EMAIL_QUEUE = "fanout_eamil_queue";
 
 	// 短信队列
-	private static final String FANOUT_SMS_QUEUE = "fanout_sms_queue3";
+	private static final String FANOUT_SMS_QUEUE = "fanout_sms_queue";
 
 	// 交换机名称
-	private static final String EXCHANGE_NAME = "fanoutExchange3";
+	private static final String EXCHANGE_NAME = "fanoutExchange";
 
 	// 定义交换机
 	@Bean
