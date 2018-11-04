@@ -96,6 +96,16 @@ public class RabbitController {
 	}
 	
 	/**
+	 * 只要绑定了交换机的队列都能收到（发布订阅模式）
+	 * @return
+	 */
+	@RequestMapping("/fanout2")
+	public String fanout2() {
+		fanoutSender.send2();
+		return "success";
+	}
+	
+	/**
 	 * 只要绑定了交换机的队列都能收到（路由模式）
 	 * @return
 	 */
