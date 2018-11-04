@@ -3,6 +3,7 @@ package com.itmuch.cloud.fanout;
 import java.util.Map;
 
 import org.springframework.amqp.core.Message;
+import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.support.AmqpHeaders;
 import org.springframework.messaging.handler.annotation.Headers;
@@ -31,7 +32,6 @@ public class FanoutEamilConsumer {
 	 * @param msg
 	 * @throws Exception
 	 */
-	//@RabbitHandler
 	@RabbitListener(queues = "fanout_eamil_queue")
 	public void process(String msg) throws Exception {
 		System.out.println("邮件消费者获取生产者消息msg:" + msg);

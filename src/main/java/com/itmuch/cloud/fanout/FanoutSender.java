@@ -48,5 +48,20 @@ public class FanoutSender {
 				.setMessageId(UUID.randomUUID() + "").build();
 		this.rabbitTemplate.convertAndSend("fanoutExchange2", "", message);
 	}
+	
+	
+	public void sendDead(int num) {
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("email", "644064779");
+		jsonObject.put("num", num);
+		String jsonString = jsonObject.toJSONString();
+		System.out.println("Sender : jsonString:" + jsonString);
+		
+		// 生产者发送消息的时候需要设置消息id
+		Message message = MessageBuilder.withBody(jsonString.getBytes())
+				.setContentType(MessageProperties.CONTENT_TYPE_JSON).setContentEncoding("utf-8")
+				.setMessageId(UUID.randomUUID() + "").build();
+		this.rabbitTemplate.convertAndSend("fanoutDeadExchange", "", message);
+	}
 
 }

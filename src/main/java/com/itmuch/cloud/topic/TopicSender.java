@@ -10,22 +10,10 @@ public class TopicSender {
 	@Autowired
 	private AmqpTemplate rabbitTemplate;
 
-	public void send() {
-		String context = "hi, i am message 1";
+	public void send(String routingKey) {
+		String context = "hi, i am topic message";
 		System.out.println("Sender : " + context);
-		this.rabbitTemplate.convertAndSend("topicExchange", "topic", context);
-	}
-
-	public void send1() {
-		String context = "hi, i am message all";
-		System.out.println("Sender : " + context);
-		this.rabbitTemplate.convertAndSend("topicExchange", "topic.message", context);
-	}
-
-	public void send2() {
-		String context = "hi, i am messages 2";
-		System.out.println("Sender : " + context);
-		this.rabbitTemplate.convertAndSend("topicExchange", "topic.messages", context);
+		this.rabbitTemplate.convertAndSend("topicExchange", routingKey, context);
 	}
 
 }

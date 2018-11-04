@@ -17,25 +17,8 @@ public class TopicTest {
 
 	@Test
 	public void topic() throws Exception {
-		sender.send();
+		sender.send("topic");
 	}
 
-	/**
-	 * 发送send1发送topic.message会匹配到topic.#和topic.message 两个Receiver都可以收到消息
-	 * @throws Exception
-	 */
-	@Test
-	public void topic1() throws Exception {
-		sender.send1();
-	}
-
-	/**
-	 * 发送send2发送topic.messages只有topic.#可以匹配所有只有Receiver2监听到消息
-	 * @throws Exception
-	 */
-	@Test
-	public void topic2() throws Exception {
-		sender.send2();
-	}
 	
 }

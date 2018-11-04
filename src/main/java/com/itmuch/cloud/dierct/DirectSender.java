@@ -12,7 +12,7 @@ public class DirectSender {
 
 	public void send(String routingKey) {
 		String msg = "hi, direct msg ";
-		System.out.println("Sender : " + msg);
+		System.out.println("Direct Sender : " + msg);
 		this.rabbitTemplate.convertAndSend("directExchange", routingKey, msg);
 	}
 }

@@ -106,7 +106,19 @@ public class RabbitController {
 	}
 	
 	/**
+	 * 只要绑定了交换机的队列都能收到（发布订阅模式）
+	 * @return
+	 */
+	@RequestMapping("/fanoutDead")
+	public String fanoutDead(int num) {
+		fanoutSender.sendDead(num);
+		return "success";
+	}
+	
+	/**
 	 * 只要绑定了交换机的队列都能收到（路由模式）
+	 * http://localhost:8080/direct?routingKey=direct.email.routing.key
+	 * http://localhost:8080/direct?routingKey=direct.sms.routing.key
 	 * @return
 	 */
 	@RequestMapping("/direct")
@@ -117,23 +129,14 @@ public class RabbitController {
 	
 	/**
 	 *    #匹配0个字符或者一个以上，，，*匹配一个字符（主题模式）
+	 *    http://localhost:8080/topic?routingKey=topic
+	 *    http://localhost:8080/topic?routingKey=topic.message
+	 *    http://localhost:8080/topic?routingKey=topic.messages
 	 * @return
 	 */
 	@RequestMapping("/topic")
-	public String topic() {
-		topicSender.send();
-		return "success";
-	}
-	
-	@RequestMapping("/topic1")
-	public String topic1() {
-		topicSender.send1();
-		return "success";
-	}
-	
-	@RequestMapping("/topic2")
-	public String topic2() {
-		topicSender.send2();
+	public String topic(String routingKey) {
+		topicSender.send(routingKey);
 		return "success";
 	}
 	

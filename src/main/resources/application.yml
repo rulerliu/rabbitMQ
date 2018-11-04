@@ -15,7 +15,7 @@ spring:
     listener:
       simple:
         ####开启手动ack  
-        acknowledge-mode: manual 
+        #acknowledge-mode: manual 
         retry:
           ####开启消费者（程序出现异常的情况下会）进行重试
           enabled: true
