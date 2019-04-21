@@ -7,6 +7,13 @@ import org.springframework.amqp.core.Queue;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
+/**
+ * 路由模式：交换机和队列，路由键一样才发送
+* <p>Title: DirectRabbitmqConfig</p>  
+* <p>Description:  </p>  
+* @author liuwq  
+* @date 2019年4月21日  下午5:50:34
+ */
 @Component
 public class DirectRabbitmqConfig {
 

@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * topic 是RabbitMQ中最灵活的一种方式，可以根据routing_key自由的绑定不同的队列
+ * topic 是RabbitMQ中最灵活的一种方式，可以根据routing_key自由的绑定不同的队列，*代表一个字符，#代表多个
  * 首先对topic规则配置，这里使用两个队列来测试
  * @author mayn
  *
@@ -18,6 +18,7 @@ public class TopicRabbitConfig {
 
 	final static String TOPIC_MESSAGE_QUQUE = "topic.message";
     final static String TOPIC_MESSAGES_QUQUE = "topic.messages";
+    final static String TOPIC_MESSAGES2_QUQUE = "topic.messages2";
     
     // 交换机名称
  	private static final String EXCHANGE_NAME = "topicExchange";
@@ -30,6 +31,11 @@ public class TopicRabbitConfig {
     @Bean
     public Queue queueMessages() {
         return new Queue(TOPIC_MESSAGES_QUQUE);
+    }
+    
+    @Bean
+    public Queue queueMessages2() {
+    	return new Queue(TOPIC_MESSAGES2_QUQUE);
     }
  
     @Bean
@@ -45,6 +51,11 @@ public class TopicRabbitConfig {
     @Bean
     Binding bindingExchangeMessages(Queue queueMessages, TopicExchange exchange) {
         return BindingBuilder.bind(queueMessages).to(exchange).with("topic.#");
+    }
+    
+    @Bean
+    Binding bindingExchangeMessages2(Queue queueMessages2, TopicExchange exchange) {
+        return BindingBuilder.bind(queueMessages2).to(exchange).with("topic.*");
     }
 	
 }

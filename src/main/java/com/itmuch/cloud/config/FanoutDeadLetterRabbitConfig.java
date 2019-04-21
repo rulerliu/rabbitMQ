@@ -26,12 +26,12 @@ import org.springframework.context.annotation.Configuration;
 public class FanoutDeadLetterRabbitConfig {
 	
 	// 邮件队列
-	private String FANOUT_DEAD_EMAIL_QUEUE = "fanout_dead_email_queue";
+	private static final String FANOUT_DEAD_EMAIL_QUEUE = "fanout_dead_email_queue";
 
 	// 短信队列
-	private String FANOUT_DEAD_SMS_QUEUE = "fanout_dead_sms_queue";
+	private static final String FANOUT_DEAD_SMS_QUEUE = "fanout_dead_sms_queue";
 	// fanout 交换机
-	private String FANOUT_DEAD_EXCHANGE_NAME = "fanoutDeadExchange";
+	private static final String FANOUT_DEAD_EXCHANGE_NAME = "fanoutDeadExchange";
 
 	/**
 	 * 定义死信队列相关信息

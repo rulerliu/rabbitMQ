@@ -17,7 +17,17 @@ public class TopicTest {
 
 	@Test
 	public void topic() throws Exception {
-		sender.send("topic");
+		// 只有路由键带#号的TopicReceiver2能消费
+//		sender.send("topic");
+		
+		// 路由键带*和#号的TopicReceiver2，TopicReceiver3能消费
+//		sender.send("topic.test");
+		
+		// 三个队列都可以消费
+//		sender.send("topic.message");
+		
+		// 只有路由键带#号的TopicReceiver2能消费
+		sender.send("topic.message.test");
 	}
 
 	
